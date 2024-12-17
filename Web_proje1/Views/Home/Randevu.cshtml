@@ -1,6 +1,51 @@
-﻿@{
-    ViewData["Title"] = "Randevu";
-}
-<h1>@ViewData["Title"]</h1>
+﻿@model Web_proje1.Models.Randevu
 
-<p>Use this page to detail your site's privacy policy.</p>
+@{
+    ViewData["Title"] = "Randevu Sistemi";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@* Randevu al formu *@
+<form method="post" asp-action="RandevuAl">
+    <div class="form-group">
+        <label for="Calisan">Çalışan Seçin</label>
+        <select class="form-control" name="CalisanId" id="Calisan">
+            @foreach (var calisan in ViewBag.Calisanlar)
+            {
+                <option value="@calisan.Id">@calisan.Adi</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="RandevuZamani">Randevu Zamanı</label>
+        <input type="datetime-local" class="form-control" id="RandevuZamani" name="RandevuZamani" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Islem">İşlem Seçin</label>
+        <input type="text" class="form-control" id="Islem" name="Islem" placeholder="İşlem adı" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Sure">Süre (dakika)</label>
+        <input type="number" class="form-control" id="Sure" name="Sure" min="1" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Ucret">Ücret</label>
+        <input type="number" class="form-control" id="Ucret" name="Ucret" step="0.01" min="0" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Randevu Al</button>
+</form>
+
+@if (TempData["Basari"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["Basari"]
+    </div>
+}
+
+

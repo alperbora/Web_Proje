@@ -1,0 +1,22 @@
+﻿@model Web_proje1.Models.Calisan
+
+<h2>Çalışan Detayı</h2>
+
+<div>
+    <h3>@Model.Ad @Model.Soyad</h3>
+    <h4>Uzmanlık Alanları</h4>
+    <ul>
+        @foreach (var uzmanlik in Model.UzmanlikAlanlari)
+        {
+            <li>@uzmanlik.Ad</li>
+        }
+    </ul>
+
+    <h4>Uygunluk Saatleri</h4>
+    <ul>
+        @foreach (var saat in Model.UygunlukSaatleri)
+        {
+            <li>@saat.BaslangicSaati.ToShortTimeString() - @saat.BitisSaati.ToShortTimeString()</li>
+        }
+    </ul>
+</div>

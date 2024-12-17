@@ -1,8 +1,53 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<Web_proje1.Models.Calisan>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Çalışanlar</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Uzmanlık Alanları</th>
+            <th>Uygunluk Saatleri</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var calisan in Model)
+        {
+            <tr>
+                <td>@calisan.Ad</td>
+                <td>@calisan.Soyad</td>
+                <td>
+                    @foreach (var uzmanlik in calisan.UzmanlikAlanlari)
+                    {
+                        <p>@uzmanlik.Ad</p>
+                    }
+                </td>
+                <td>
+                    @foreach (var saat in calisan.UygunlukSaatleri)
+                    {
+                        <p>@saat.BaslangicSaati.ToShortTimeString() - @saat.BitisSaati.ToShortTimeString()</p>
+                    }
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Calisan", new { id = calisan.Id })">Detaylar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model != null && Model.Any())  // Model null değilse ve veri varsa
+{
+    @foreach (var calisan in Model)
+    {
+        <div>
+            <p>@calisan.Ad @calisan.Soyad</p>
+        </div>
+    }
+}
+else
+{
+    <p>Veri bulunamadı.</p>
+}

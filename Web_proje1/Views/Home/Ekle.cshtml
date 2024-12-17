@@ -1,0 +1,30 @@
+﻿@model Web_proje1.Models.Calisan
+
+<h2>Yeni Çalışan Ekle</h2>
+
+<form asp-action="Ekle" method="post">
+    <div class="form-group">
+        <label for="Ad">Ad:</label>
+        <input type="text" id="Ad" name="Ad" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="Soyad">Soyad:</label>
+        <input type="text" id="Soyad" name="Soyad" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="UzmanlikAlani">Uzmanlık Alanı:</label>
+        <input type="text" id="UzmanlikAlani" name="UzmanlikAlani" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="UygunlikSaati">Uygunlik Saati:</label>
+        <input type="text" id="UygunlikSaati" name="UygunlikSaati" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Kaydet</button>
+</form>
+
+@if (TempData["Mesaj"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["Mesaj"]
+    </div>
+}
