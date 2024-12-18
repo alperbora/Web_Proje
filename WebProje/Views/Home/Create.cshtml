@@ -1,0 +1,20 @@
+﻿@model WebProje.Models.Salon
+
+<h1>Salon Ekle</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label for="Isim">Salon İsmi</label>
+        <input type="text" id="Isim" name="Isim"  />
+    </div>
+    <div>
+        <label for="Tip">Salon Tipi</label>
+        <input type="text" id="Tip" name="Tip"   />
+    </div>
+   
+    <div>
+        <label for="CalismaSaatleri">Çalışma Saatleri</label>
+        <input type="text" id="CalismaSaatleri" name="CalismaSaatleri" />
+    </div>
+    <button type="submit">Ekle</button>
+</form>
