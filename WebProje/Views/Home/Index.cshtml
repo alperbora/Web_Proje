@@ -1,31 +1,111 @@
 ﻿@model IEnumerable<WebProje.Models.Salon>
 
+@{
+    ViewData["Title"] = "Salon Listesi";
+}
+
+<h1>Kuaför ve Berber Salonları</h1>
+
+<p>Burada kayıtlı salonların bilgilerini, sundukları hizmetleri ve fiyat listelerini bulabilirsiniz.</p>
+
+<div class="container mt-4">
+    <h2>Kuaförlük Nedir?</h2>
+    <p>
+        Kuaförlük, bireylerin kişisel bakım ve güzellik ihtiyaçlarını karşılamak için saç kesimi, şekillendirme, boyama ve bakım gibi hizmetler sunan bir meslektir.
+        Yalnızca estetik bir dönüşüm sağlamakla kalmaz, aynı zamanda insanların kendilerini daha özgüvenli hissetmelerine yardımcı olur.
+        Kuaförler ve berberler, müşterilerinin tarzını ve ihtiyaçlarını anlamak için bireysel bir yaklaşım benimser ve en iyi sonucu elde etmek adına yaratıcı çözümler sunar.
+    </p>
+    <p>
+        Modern kuaförlük, geleneksel tekniklerin yanı sıra yeni trendlere ve teknolojilere uyum sağlamayı gerektirir.
+        Bu nedenle, bu meslek, hem sanatsal hem de teknik becerilerin bir kombinasyonunu içerir.
+        Kuaförler, müşterilerinin saç ve cilt sağlığını korumak için profesyonel ürünler ve yöntemler kullanır.
+    </p>
+    <p>
+        Günümüzde kuaförlük, yalnızca kişisel bakım hizmetleri değil, aynı zamanda bireylerin kendilerini ifade etmeleri için bir platform sunan bir sanattır.
+        İster bir saç kesimi, ister bir renk değişimi olsun, her dokunuş müşterinin kendine olan güvenini artırmayı amaçlar.
+    </p>
+</div>
+
+<div class="container mt-4">
+    <h2>Hizmetlerimiz ve Fiyat Listesi</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Hizmet</th>
+                <th>Süre</th>
+                <th>Fiyat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Klasik Saç Kesimi</td>
+                <td>30 dakika</td>
+                <td>150 TL</td>
+            </tr>
+            <tr>
+                <td>Katlı Saç Kesimi</td>
+                <td>45 dakika</td>
+                <td>200 TL</td>
+            </tr>
+            <tr>
+                <td>Saç Boyama (Tek Renk)</td>
+                <td>90 dakika</td>
+                <td>500 TL</td>
+            </tr>
+            <tr>
+                <td>Ombre / Balayage</td>
+                <td>120 dakika</td>
+                <td>800 TL</td>
+            </tr>
+            <tr>
+                <td>Fön ve Şekillendirme</td>
+                <td>20 dakika</td>
+                <td>100 TL</td>
+            </tr>
+            <tr>
+                <td>Düğün / Özel Gün Saç Tasarımı</td>
+                <td>150 dakika</td>
+                <td>1500 TL</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        Salonumuzda sunduğumuz tüm hizmetler, profesyonel ekipmanlar ve yüksek kaliteli ürünlerle gerçekleştirilmektedir.
+        Detaylı bilgi ve kişiselleştirilmiş çözümler için randevu alabilirsiniz.
+    </p>
+</div>
 
 
-<h1>Salonlar</h1>
-<a href="@Url.Action("Create", "Salon")">Yeni Salon Ekle</a>
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>Ad</th>
-            <th>Tip</th>
+            <th>Salon İsmi</th>
+            <th>Salon Tipi</th>
             <th>Çalışma Saatleri</th>
-            <th>İşlemler</th>
+            <th>Fiyat Listesi</th>
+            <th>Aksiyon</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var salon in Model)
         {
-                <tr>
-                    <td>@salon.Ad</td> <!-- Burada Isim özelliğini kullanıyoruz -->
-                    <td>@salon.Tip</td>
-                    
-                    <td>@salon.CalismaSaatleri</td>
-                    <td>
-                        <a href="@Url.Action("Edit", "Salon", new { id = salon.Id })">Düzenle</a> |
-                        <a href="@Url.Action("Delete", "Salon", new { id = salon.Id })">Sil</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>@salon.Ad</td>
+                <td>@salon.Tip</td>
+                <td>@salon.CalismaSaatleri</td>
+                <td>
+                    <ul>
+                        
+                    </ul>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@salon.Id" class="btn btn-primary">Düzenle</a>
+                    <a asp-action="Details" asp-route-id="@salon.Id" class="btn btn-info">Detaylar</a>
+                    <a asp-action="Delete" asp-route-id="@salon.Id" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+<a asp-action="Create" class="btn btn-success">Yeni Salon Ekle</a>
