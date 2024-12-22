@@ -12,7 +12,7 @@ using WebProje.Data;
 namespace WebProje.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241218190626_InitialCreate")]
+    [Migration("20241222150955_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -58,6 +58,34 @@ namespace WebProje.Migrations
                     b.ToTable("Calisanlar");
                 });
 
+            modelBuilder.Entity("WebProje.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SubmittedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
+
             modelBuilder.Entity("WebProje.Models.Randevu", b =>
                 {
                     b.Property<int>("Id")
@@ -94,16 +122,13 @@ namespace WebProje.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Aciklama")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Ad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("CalismaSaatleri")
-                        .HasColumnType("time");
+                    b.Property<string>("CalismaSaatleri")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tip")
                         .IsRequired()

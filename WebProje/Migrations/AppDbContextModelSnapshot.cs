@@ -52,7 +52,35 @@ namespace WebProje.Migrations
 
                     b.HasIndex("SalonId");
 
-                    b.ToTable("Calisanlar", (string)null);
+                    b.ToTable("Calisanlar");
+                });
+
+            modelBuilder.Entity("WebProje.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SubmittedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("WebProje.Models.Randevu", b =>
@@ -80,7 +108,7 @@ namespace WebProje.Migrations
 
                     b.HasIndex("CalisanId");
 
-                    b.ToTable("Randevular", (string)null);
+                    b.ToTable("Randevular");
                 });
 
             modelBuilder.Entity("WebProje.Models.Salon", b =>
@@ -91,16 +119,13 @@ namespace WebProje.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Aciklama")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Ad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("CalismaSaatleri")
-                        .HasColumnType("time");
+                    b.Property<string>("CalismaSaatleri")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tip")
                         .IsRequired()
@@ -108,7 +133,7 @@ namespace WebProje.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Salonlar", (string)null);
+                    b.ToTable("Salonlar");
                 });
 
             modelBuilder.Entity("WebProje.Models.Calisan", b =>
