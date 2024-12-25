@@ -1,0 +1,27 @@
+﻿@model WebProje.Models.Calisan
+
+@{
+    ViewData["Title"] = "Çalışan Düzenle";
+}
+
+<h1>Çalışan Düzenle</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="AdSoyad">Ad Soyad</label>
+        <input type="text" class="form-control" id="AdSoyad" name="AdSoyad" value="@Model.AdSoyad" required>
+    </div>
+    <div class="form-group">
+        <label for="UzmanlikAlani">Uzmanlık Alanı</label>
+        <input type="text" class="form-control" id="UzmanlikAlani" name="UzmanlikAlani" value="@Model.UzmanlikAlani" required>
+    </div>
+    <div class="form-group">
+        <label for="UygunSaatler">Uygun Saatler</label>
+        <input type="text" class="form-control" id="UygunSaatler" name="UygunSaatler" value="@Model.UygunSaatler" required>
+    </div>
+    <div class="form-group">
+        <label for="Beceriler">Beceriler</label>
+        <input type="text" class="form-control" id="Beceriler" name="Beceriler" value="@string.Join(", ", Model.Beceriler)" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>

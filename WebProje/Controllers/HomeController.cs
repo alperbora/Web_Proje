@@ -41,10 +41,7 @@ namespace WebProje.Controllers
         {
             return View();
         }
-        public IActionResult Login()
-        {
-            return View();
-        }
+       
 
 
     }

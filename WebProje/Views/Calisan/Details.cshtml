@@ -1,0 +1,17 @@
+﻿@model WebProje.Models.Calisan
+
+@{
+    ViewData["Title"] = "Çalışan Detayları";
+}
+
+<h1>Çalışan Detayları</h1>
+
+<div>
+    <h3>@Model.AdSoyad</h3>
+    <p><strong>Uzmanlık Alanı:</strong> @Model.UzmanlikAlani</p>
+    <p><strong>Uygun Saatler:</strong> @Model.UygunSaatler</p>
+    <p><strong>Beceriler:</strong> @string.Join(", ", Model.Beceriler)</p>
+</div>
+
+<a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary">Düzenle</a>
+<a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger">Sil</a>

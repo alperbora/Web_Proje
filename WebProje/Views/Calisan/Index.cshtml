@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebProje.Models.Calisan>
+
+@{
+    ViewData["Title"] = "Çalışan Listesi";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">Çalışan Yönetimi</h1>
+    <p class="text-center">Bu sayfadan çalışanların bilgilerini görüntüleyebilir, düzenleyebilir ve yeni çalışanlar ekleyebilirsiniz.</p>
+
+    <div class="text-right mb-3">
+        <a asp-action="Create" class="btn btn-success">Yeni Çalışan Ekle</a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Ad Soyad</th>
+                <th>Uzmanlık Alanı</th>
+                <th>Beceriler</th>
+                <th>Uygun Saatler</th>
+                <th>Aksiyon</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                int count = 1;
+                foreach (var calisan in Model)
+                {
+                    <tr>
+                        <td>@count</td>
+                        <td>@calisan.AdSoyad</td>
+                        <td>@calisan.UzmanlikAlani</td>
+                        <td>
+                            @if (calisan.Beceriler != null && calisan.Beceriler.Any())
+                            {
+                                <ul>
+                                    @foreach (var beceri in calisan.Beceriler)
+                                    {
+                                        <li>@beceri</li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <span>Belirtilmemiş</span>
+                            }
+                        </td>
+                        <td>@calisan.UygunSaatler</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@calisan.Id" class="btn btn-primary btn-sm">Düzenle</a>
+                            <a asp-action="Details" asp-route-id="@calisan.Id" class="btn btn-info btn-sm">Detaylar</a>
+                            <a asp-action="Delete" asp-route-id="@calisan.Id" class="btn btn-danger btn-sm">Sil</a>
+                        </td>
+                    </tr>
+                    count++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">Kayıtlı çalışan bulunmamaktadır.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

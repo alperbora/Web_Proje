@@ -1,0 +1,27 @@
+﻿@model WebProje.Models.Calisan
+
+<h2>Çalışan Ekle</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="AdSoyad">Ad Soyad</label>
+        <input type="text" id="AdSoyad" name="AdSoyad" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="UzmanlikAlani">Uzmanlık Alanı</label>
+        <input type="text" id="UzmanlikAlani" name="UzmanlikAlani" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="UygunSaatler">Uygun Saatler</label>
+        <input type="text" id="UygunSaatler" name="UygunSaatler" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Beceriler">Beceriler</label>
+        <textarea id="Beceriler" name="Beceriler" class="form-control" placeholder="Becerileri virgülle ayırarak yazın."></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>

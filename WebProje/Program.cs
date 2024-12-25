@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Configuration;
 using WebProje.Data;
+using WebProje.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,18 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+
+
+}
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    if (!context.Admins.Any())
+    {
+        context.Admins.Add(new Admin { Email = "admin@sakarya.edu.tr", Password = "sau" });
+        context.SaveChanges();
+    }
 }
 
 app.UseHttpsRedirection();
@@ -32,5 +45,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
 app.Run();

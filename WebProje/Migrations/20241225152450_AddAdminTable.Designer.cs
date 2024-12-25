@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebProje.Data;
 
@@ -11,9 +12,11 @@ using WebProje.Data;
 namespace WebProje.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241225152450_AddAdminTable")]
+    partial class AddAdminTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,15 +54,17 @@ namespace WebProje.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AdSoyad")
+                    b.Property<string>("Ad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.PrimitiveCollection<string>("Beceriler")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<TimeSpan>("CalismaSaatleri")
+                        .HasColumnType("time");
 
-                    b.Property<string>("UygunSaatler")
+                    b.Property<int>("SalonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Soyad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -68,6 +73,8 @@ namespace WebProje.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SalonId");
 
                     b.ToTable("Calisanlar");
                 });
@@ -151,6 +158,17 @@ namespace WebProje.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Salonlar");
+                });
+
+            modelBuilder.Entity("WebProje.Models.Calisan", b =>
+                {
+                    b.HasOne("WebProje.Models.Salon", "Salon")
+                        .WithMany()
+                        .HasForeignKey("SalonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Salon");
                 });
 
             modelBuilder.Entity("WebProje.Models.Randevu", b =>

@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-5">
+    <h1>Admin Dashboard</h1>
+    <p>Hoş geldiniz, burada yönetim paneline erişebilirsiniz.</p>
+
+    <div class="mt-4">
+        <h3>İşlemler</h3>
+        <ul>
+            <li><a asp-controller="Calisan" asp-action="Create" class="btn btn-success">Yeni Çalışan Ekle</a></li>
+            <li><a asp-controller="Calisan" asp-action="Index" class="btn btn-primary">Çalışan Listesini Gör</a></li>
+        </ul>
+    </div>
+</div>

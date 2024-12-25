@@ -1,0 +1,17 @@
+﻿@model WebProje.Models.Calisan
+
+@{
+    ViewData["Title"] = "Çalışan Sil";
+}
+
+<h1>Çalışan Sil</h1>
+
+<h3>@Model.AdSoyad</h3>
+<p><strong>Uzmanlık Alanı:</strong> @Model.UzmanlikAlani</p>
+<p><strong>Uygun Saatler:</strong> @Model.UygunSaatler</p>
+<p><strong>Beceriler:</strong> @string.Join(", ", Model.Beceriler)</p>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Evet, sil</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Hayır, geri dön</a>
+</form>
