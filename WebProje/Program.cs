@@ -24,16 +24,6 @@ if (!app.Environment.IsDevelopment())
 
 
 }
-using (var scope = app.Services.CreateScope())
-{
-    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-    if (!context.Admins.Any())
-    {
-        context.Admins.Add(new Admin { Email = "admin@sakarya.edu.tr", Password = "sau" });
-        context.SaveChanges();
-    }
-}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

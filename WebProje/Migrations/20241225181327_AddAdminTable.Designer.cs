@@ -12,7 +12,7 @@ using WebProje.Data;
 namespace WebProje.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241225152450_AddAdminTable")]
+    [Migration("20241225181327_AddAdminTable")]
     partial class AddAdminTable
     {
         /// <inheritdoc />
@@ -54,17 +54,15 @@ namespace WebProje.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Ad")
+                    b.Property<string>("AdSoyad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("CalismaSaatleri")
-                        .HasColumnType("time");
+                    b.PrimitiveCollection<string>("Beceriler")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SalonId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Soyad")
+                    b.Property<string>("UygunSaatler")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -73,8 +71,6 @@ namespace WebProje.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SalonId");
 
                     b.ToTable("Calisanlar");
                 });
@@ -158,17 +154,6 @@ namespace WebProje.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Salonlar");
-                });
-
-            modelBuilder.Entity("WebProje.Models.Calisan", b =>
-                {
-                    b.HasOne("WebProje.Models.Salon", "Salon")
-                        .WithMany()
-                        .HasForeignKey("SalonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Salon");
                 });
 
             modelBuilder.Entity("WebProje.Models.Randevu", b =>

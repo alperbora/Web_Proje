@@ -12,6 +12,36 @@ namespace WebProje.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Admins",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admins", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Calisanlar",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AdSoyad = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UzmanlikAlani = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UygunSaatler = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Beceriler = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Calisanlar", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Contacts",
                 columns: table => new
                 {
@@ -43,29 +73,6 @@ namespace WebProje.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Calisanlar",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Ad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Soyad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UzmanlikAlani = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CalismaSaatleri = table.Column<TimeSpan>(type: "time", nullable: false),
-                    SalonId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Calisanlar", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Calisanlar_Salonlar_SalonId",
-                        column: x => x.SalonId,
-                        principalTable: "Salonlar",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Randevular",
                 columns: table => new
                 {
@@ -88,11 +95,6 @@ namespace WebProje.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Calisanlar_SalonId",
-                table: "Calisanlar",
-                column: "SalonId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Randevular_CalisanId",
                 table: "Randevular",
                 column: "CalisanId");
@@ -102,16 +104,19 @@ namespace WebProje.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Admins");
+
+            migrationBuilder.DropTable(
                 name: "Contacts");
 
             migrationBuilder.DropTable(
                 name: "Randevular");
 
             migrationBuilder.DropTable(
-                name: "Calisanlar");
+                name: "Salonlar");
 
             migrationBuilder.DropTable(
-                name: "Salonlar");
+                name: "Calisanlar");
         }
     }
 }

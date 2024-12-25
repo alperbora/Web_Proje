@@ -26,17 +26,6 @@ namespace WebProje.Controllers
             return View(salonlar);
         }
 
-
-        public IActionResult Edit()
-        {
-            return View();
-        }
-
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         public IActionResult Contact()
         {
             return View();
