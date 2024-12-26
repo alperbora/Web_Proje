@@ -1,0 +1,16 @@
+﻿@model WebProje.Models.Randevu
+
+<h1>Randevu Sil</h1>
+<h3>Randevu bilgilerini silmek üzeresiniz.</h3>
+<p>
+    <strong>Çalışan:</strong> @Model.Calisan.AdSoyad<br />
+    <strong>İşlem:</strong> @Model.Islem<br />
+    <strong>Randevu Saati:</strong> @Model.RandevuSaati.ToString("dd/MM/yyyy HH:mm")<br />
+    <strong>Ücret:</strong> @Model.Ucret<br />
+    <strong>Durum:</strong> @Model.Durum
+</p>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a href="@Url.Action("Index", "Randevu")" class="btn btn-secondary">İptal</a>
+</form>

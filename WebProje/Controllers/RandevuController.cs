@@ -41,16 +41,22 @@ namespace WebProje.Controllers
                 return View(randevu);
             }
 
+            // Randevuyu veritabanına ekle
             _context.Randevular.Add(randevu);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+
+            // Başarı mesajı ekle
+            TempData["SuccessMessage"] = "Randevunuz başarıyla alınmıştır!";
+            return RedirectToAction("Create"); // Randevu alındıktan sonra aynı sayfada kalacak
         }
 
         public async Task<IActionResult> Index()
         {
+            // Admin kontrolü kaldırıldı
             var randevular = await _context.Randevular
                 .Include(r => r.Calisan)
                 .ToListAsync();
+
             return View(randevular);
         }
 
@@ -60,6 +66,17 @@ namespace WebProje.Controllers
             if (randevu != null)
             {
                 randevu.Durum = "Onaylandı";
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var randevu = await _context.Randevular.FindAsync(id);
+            if (randevu != null)
+            {
+                _context.Randevular.Remove(randevu);
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction("Index");
