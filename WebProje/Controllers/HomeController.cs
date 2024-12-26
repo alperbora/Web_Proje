@@ -17,13 +17,10 @@ namespace WebProje.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            // Salonlar tablosundan tüm verileri çekiyoruz
-            var salonlar = await _context.Salonlar.ToListAsync();
-
-            // Veriyi View'a gönderiyoruz
-            return View(salonlar);
+            
+            return View();
         }
 
         public IActionResult Contact()

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebProje.Models.Randevu>
+
+<div class="container mt-5">
+    <h2>Randevular</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Çalışan</th>
+                <th>İşlem</th>
+                <th>Randevu Saati</th>
+                <th>Ücret</th>
+                <th>Durum</th>
+                <th>Aksiyon</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var randevu in Model)
+            {
+                <tr>
+                    <td>@randevu.Calisan.AdSoyad</td>
+                    <td>@randevu.Islem</td>
+                    <td>@randevu.RandevuSaati.ToString("g")</td>
+                    <td>@randevu.Ucret.ToString("C")</td>
+                    <td>@randevu.Durum</td>
+                    <td>
+                        @if (randevu.Durum == "Bekliyor")
+                        {
+                            <a asp-action="Approve" asp-route-id="@randevu.Id" class="btn btn-success">Onayla</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

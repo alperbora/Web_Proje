@@ -1,0 +1,37 @@
+﻿@model WebProje.Models.Randevu
+
+<div class="container mt-5">
+    <h2>Randevu Al</h2>
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label for="CalisanId">Çalışan Seçin</label>
+            <select class="form-control" id="CalisanId" name="CalisanId" required>
+                <option value="">Seçiniz</option>
+                @foreach (var calisan in ViewBag.Calisanlar)
+                {
+                    <option value="@calisan.Id">@calisan.AdSoyad (@calisan.UzmanlikAlani)</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="Islem">İşlem Seçin</label>
+            <select class="form-control" id="Islem" name="Islem" required>
+                <option value="">Seçiniz</option>
+                @foreach (var islem in ViewBag.Islemler)
+                {
+                    <option value="@islem.Ad" data-ucret="@islem.Ucret">@islem.Ad - @islem.Ucret.ToString("C")</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="RandevuSaati">Randevu Saati</label>
+            <input type="datetime-local" class="form-control" id="RandevuSaati" name="RandevuSaati" required />
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Randevu Al</button>
+        </div>
+    </form>
+</div>
