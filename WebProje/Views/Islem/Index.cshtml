@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebProje.Models.Islem>
+
+<div class="container mt-5">
+    <h2>İşlem Listesi</h2>
+    <a asp-controller="Islem" asp-action="Create" class="btn btn-success mb-3">Yeni İşlem Ekle</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>İşlem Adı</th>
+                <th>İşlem Ücreti</th>
+                <th>İşlem Süresi (Dakika)</th>
+                <th>Aksiyonlar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var islem in Model)
+            {
+                <tr>
+                    <td>@islem.Ad</td>
+                    <td>@islem.Ucret.ToString("C")</td>
+                    <td>@islem.Sure</td>
+                    <td>
+                        <a asp-controller="Islem" asp-action="Edit" asp-route-id="@islem.Id" class="btn btn-warning">Düzenle</a>
+                        <a asp-controller="Islem" asp-action="Delete" asp-route-id="@islem.Id" class="btn btn-danger">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

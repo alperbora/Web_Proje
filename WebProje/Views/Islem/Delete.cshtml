@@ -1,0 +1,20 @@
+﻿@model WebProje.Models.Islem
+
+<div class="container mt-5">
+    <h2>İşlem Silme</h2>
+    <p>Bu işlemi silmek istediğinizden emin misiniz?</p>
+    <div>
+        <strong>İşlem Adı:</strong> @Model.Ad
+    </div>
+    <div>
+        <strong>İşlem Ücreti:</strong> @Model.Ucret.ToString("C")
+    </div>
+    <div>
+        <strong>İşlem Süresi:</strong> @Model.Sure
+    </div>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+        <a asp-action="Index" class="btn btn-secondary">Hayır, Geri Dön</a>
+    </form>
+</div>
