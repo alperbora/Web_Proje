@@ -1,30 +1,50 @@
 ﻿@model IEnumerable<WebProje.Models.Islem>
 
 <div class="container mt-5">
-    <h2>İşlem Listesi</h2>
-    <a asp-controller="Islem" asp-action="Create" class="btn btn-success mb-3">Yeni İşlem Ekle</a>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>İşlem Listesi</h2>
+    </div>
+    <a asp-controller="Admin" asp-action="Dashboard" class="btn btn-secondary">Geri</a>
+    <a asp-controller="Islem" asp-action="Create" class="btn btn-success">Yeni İşlem Ekle</a>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>İşlem Adı</th>
                 <th>İşlem Ücreti</th>
                 <th>İşlem Süresi (Dakika)</th>
-                <th>Aksiyonlar</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (var islem in Model)
-            {
-                <tr>
-                    <td>@islem.Ad</td>
-                    <td>@islem.Ucret.ToString("C")</td>
-                    <td>@islem.Sure</td>
-                    <td>
-                        <a asp-controller="Islem" asp-action="Edit" asp-route-id="@islem.Id" class="btn btn-warning">Düzenle</a>
-                        <a asp-controller="Islem" asp-action="Delete" asp-route-id="@islem.Id" class="btn btn-danger">Sil</a>
-                    </td>
-                </tr>
-            }
+        <tbody id="islem-table-body">
+            <!-- API'den gelen işlemler burada listelenecek -->
         </tbody>
     </table>
 </div>
+
+<script>
+    fetch('/api/IslemApi')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('islem-table-body');
+            data.forEach(islem => {
+                const row = document.createElement('tr');
+
+                // İşlem Adı
+                const adCell = document.createElement('td');
+                adCell.textContent = islem.ad;
+                row.appendChild(adCell);
+
+                // İşlem Ücreti
+                const ucretCell = document.createElement('td');
+                ucretCell.textContent = islem.ucret.toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' });
+                row.appendChild(ucretCell);
+
+                // İşlem Süresi
+                const sureCell = document.createElement('td');
+                sureCell.textContent = `${islem.sure} dakika`;
+                row.appendChild(sureCell);
+
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>

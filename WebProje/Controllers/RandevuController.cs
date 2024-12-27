@@ -41,21 +41,52 @@ namespace WebProje.Controllers
                 return View(randevu);
             }
 
+            // İşlem ücretini almak için işlem adını kullanarak işlemi bul
+            var islem = await _context.Islemler
+                .Where(i => i.Ad == randevu.Islem)
+                .FirstOrDefaultAsync();
+
+            if (islem != null)
+            {
+                randevu.Ucret = islem.Ucret;  // Seçilen işlemin ücretini randevuya ata
+            }
+            else
+            {
+                ModelState.AddModelError("", "Geçersiz işlem seçildi.");
+                ViewBag.Calisanlar = await _context.Calisanlar.ToListAsync();
+                ViewBag.Islemler = await _context.Islemler.ToListAsync();
+                return View(randevu);
+            }
+
             // Randevuyu veritabanına ekle
             _context.Randevular.Add(randevu);
             await _context.SaveChangesAsync();
 
             // Başarı mesajı ekle
             TempData["SuccessMessage"] = "Randevunuz başarıyla alınmıştır!";
-            return RedirectToAction("Create"); // Randevu alındıktan sonra aynı sayfada kalacak
+            return RedirectToAction("Create");
         }
+
+
 
         public async Task<IActionResult> Index()
         {
-            // Admin kontrolü kaldırıldı
             var randevular = await _context.Randevular
                 .Include(r => r.Calisan)
                 .ToListAsync();
+
+            // Her randevu için işlem ücretini çekme
+            foreach (var randevu in randevular)
+            {
+                var islem = await _context.Islemler
+                    .Where(i => i.Ad == randevu.Islem)
+                    .FirstOrDefaultAsync();
+
+                if (islem != null)
+                {
+                    randevu.Ucret = islem.Ucret;  // İşlem ücretini randevuda güncelle
+                }
+            }
 
             return View(randevular);
         }

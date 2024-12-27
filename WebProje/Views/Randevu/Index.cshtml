@@ -2,6 +2,7 @@
 
 <div class="container mt-5">
     <h2>Randevular</h2>
+    <a asp-controller="Admin" asp-action="Dashboard" class="btn btn-secondary">Geri</a>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -20,14 +21,14 @@
                     <td>@randevu.Calisan.AdSoyad</td>
                     <td>@randevu.Islem</td>
                     <td>@randevu.RandevuSaati.ToString("g")</td>
-                    <td>@randevu.Ucret.ToString("C")</td>
+                    <td>@randevu.Ucret.ToString("C")</td>  <!-- Ücret doğru şekilde görüntüleniyor -->
                     <td>@randevu.Durum</td>
                     <td>
                         @if (randevu.Durum == "Bekliyor")
                         {
                             <a asp-action="Approve" asp-route-id="@randevu.Id" class="btn btn-success">Onayla</a>
                         }
-                        <a asp-action="Delete" asp-route-id="@randevu.Id" class="btn btn-danger">Sil</a> <!-- Silme Butonu -->
+                        <a asp-action="Delete" asp-route-id="@randevu.Id" class="btn btn-danger">Sil</a>
                     </td>
                 </tr>
             }

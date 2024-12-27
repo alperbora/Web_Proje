@@ -2,7 +2,15 @@
     ViewData["Title"] = "İletişim";
 }
 
+
 <div class="container mt-4">
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
     <h1 class="text-center">Bizimle İletişime Geçin</h1>
     <p class="text-center">Her türlü soru, öneri ve randevu talepleriniz için bizimle iletişime geçebilirsiniz.</p>
 

@@ -21,10 +21,12 @@ namespace WebProje.Controllers
                 contact.SubmittedAt = DateTime.Now;  // Mesajın gönderilme tarihi
                 _context.Contacts.Add(contact);  // Veritabanına ekleniyor
                 _context.SaveChanges();  // Değişiklik kaydediliyor
-                return RedirectToAction("Index", "Home");  // Ana sayfaya yönlendir
+                
+                TempData["SuccessMessage"] = "Mesajınız başarıyla alınmıştır!";
+                return RedirectToAction("Contact", "Home");
             }
 
-            return View("Index");  // Formu tekrar göster
+            return View();  // Formu tekrar göster
         }
     }
 }
