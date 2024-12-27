@@ -1,0 +1,20 @@
+﻿<a asp-controller="AI" asp-action="Index" class="btn btn-secondary">Geri</a>
+
+@{
+    ViewData["Title"] = "Sonuç";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h3>Yapay Zeka Yanıtı:</h3>
+    @if (ViewData["GeneratedImageOutput"] != null)
+    {
+        <p><strong>İşlem Sonucu:</strong></p>
+        <img src="@ViewData["GeneratedImageOutput"]" alt="Generated Image" class="img-fluid" />
+    }
+    else
+    {
+        <p>Henüz bir sonuç alınamadı. Lütfen tekrar deneyin.</p>
+    }
+</div>

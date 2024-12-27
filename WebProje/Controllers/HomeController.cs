@@ -27,8 +27,5 @@ namespace WebProje.Controllers
         {
             return View();
         }
-       
-
-
     }
 }

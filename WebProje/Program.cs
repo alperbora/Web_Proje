@@ -1,22 +1,28 @@
 using Microsoft.EntityFrameworkCore;
 using WebProje.Data;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
-// API Controller'larını ekleyin
-builder.Services.AddControllers();  // Bu satır, API controller'larını kullanabilmek için gerekli.
 
-// Diğer servislerinizi eklemeyi unutmayın
+builder.Services.AddControllers();  
+
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Diğer servisler
-builder.Services.AddRazorPages(); // Razor Pages için
-builder.Services.AddEndpointsApiExplorer(); // API dokümantasyonu için
+var apiKey = builder.Configuration.GetValue<string>("Replicate:ApiKey");
+
+
+builder.Services.AddRazorPages(); 
+builder.Services.AddEndpointsApiExplorer(); 
+builder.Services.AddHttpClient<ReplicateService>();
+builder.Services.AddHttpClient();
+
 
 var app = builder.Build();
 
-// Middleware yapılandırması
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -36,9 +42,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapRazorPages(); // Razor Pages için
+app.MapRazorPages(); 
 
-// API'ler için endpointleri tanımlayın
-app.MapControllers(); // API controller'larını kullanabilmek için gerekli.
+
+app.MapControllers(); 
 
 app.Run();

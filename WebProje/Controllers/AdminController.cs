@@ -57,15 +57,32 @@ namespace WebProje.Controllers
             var existingAdmin = await _context.Admins
                 .FirstOrDefaultAsync(a => a.Email == admin.Email && a.Password == admin.Password);
 
-            if (existingAdmin != null)
+            // Eğer kullanıcı veritabanında bulunmazsa, otomatik olarak kayıt ekleyelim.
+            if (existingAdmin == null)
             {
-                // Kullanıcı oturum açıyor
-                return RedirectToAction("Dashboard", "Admin");
+                if (admin.Email == "b221210307@sakarya.edu.tr" || admin.Email == "B221210307@sakarya.edu.tr" && admin.Password == "sau")
+                {
+                    // Bu e-posta ve şifre için yeni bir admin kaydı ekleyelim.
+                    var newAdmin = new Admin
+                    {
+                        Email = admin.Email,
+                        Password = admin.Password // Gerçek dünyada bu şifreyi hash'lemelisiniz
+                    };
+                    _context.Admins.Add(newAdmin);
+                    await _context.SaveChangesAsync();
+
+                    // Başarılı giriş yaptıktan sonra yönlendirme
+                    return RedirectToAction("Dashboard", "Admin");
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Geçersiz e-posta veya şifre.";
+                    return RedirectToAction("Login");
+                }
             }
 
-            ModelState.AddModelError("", "Geçersiz e-posta veya şifre.");
-            return View(admin);
-
+            // Eğer kullanıcı zaten varsa, giriş başarılı.
+            return RedirectToAction("Dashboard", "Admin");
         }
 
         public IActionResult Dashboard()

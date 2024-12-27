@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "AI Görüntü Üretici";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post" action="/AI/GenerateImage">
+    <div class="form-group">
+        <label for="imageUrl">Görsel URL'si:</label>
+        <input type="text" id="imageUrl" name="imageUrl" class="form-control" placeholder="Görsel URL'sini girin" />
+    </div>
+    <div class="form-group">
+        <label for="prompt">Açıklama (Prompt) INGILIZCE OLARAK GİRİN:</label>
+        <input type="text" id="prompt" name="prompt" class="form-control" placeholder="Örneğin: kahkül, mavi renk saç, küt kesim" />
+    </div>
+    <button type="submit" class="btn btn-primary">Görüntü Üret</button>
+</form>
