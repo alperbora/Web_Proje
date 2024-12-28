@@ -4,6 +4,9 @@ using WebProje.Data;
 using WebProje.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+
 
 namespace WebProje.Controllers
 {
@@ -16,7 +19,7 @@ namespace WebProje.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet,Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> Create()
         {
             ViewBag.Calisanlar = await _context.Calisanlar.ToListAsync();
@@ -24,7 +27,7 @@ namespace WebProje.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost,Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> Create(Randevu randevu)
         {
             // Çakışma kontrolü
@@ -68,7 +71,7 @@ namespace WebProje.Controllers
         }
 
 
-
+        [Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> Index()
         {
             var randevular = await _context.Randevular
@@ -91,6 +94,7 @@ namespace WebProje.Controllers
             return View(randevular);
         }
 
+        [Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> Approve(int id)
         {
             var randevu = await _context.Randevular.FindAsync(id);
@@ -102,6 +106,7 @@ namespace WebProje.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var randevu = await _context.Randevular.FindAsync(id);

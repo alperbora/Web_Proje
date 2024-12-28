@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebProje.Data;
 using WebProje.Models;
+using Microsoft.AspNetCore.Authorization;
 
 public class IslemController : Controller
 {
@@ -13,6 +14,7 @@ public class IslemController : Controller
     }
 
     // İşlem Listesi
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Index()
     {
         var islemler = await _context.Islemler.ToListAsync();
@@ -20,13 +22,14 @@ public class IslemController : Controller
     }
 
     // Yeni İşlem Ekle - GET
+    [Authorize(Roles = "Admin")]
     public IActionResult Create()
     {
         return View();
     }
 
     // Yeni İşlem Ekle - POST
-    [HttpPost]
+    [HttpPost,Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create(Islem islem)
     {
         if (ModelState.IsValid)
@@ -39,6 +42,7 @@ public class IslemController : Controller
     }
 
     // İşlem Düzenle - GET
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Edit(int id)
     {
         var islem = await _context.Islemler.FindAsync(id);
@@ -50,7 +54,7 @@ public class IslemController : Controller
     }
 
     // İşlem Düzenle - POST
-    [HttpPost]
+    [HttpPost,Authorize(Roles = "Admin")]
     public async Task<IActionResult> Edit(int id, Islem islem)
     {
         if (id != islem.Id)
@@ -82,6 +86,7 @@ public class IslemController : Controller
     }
 
     // İşlem Sil - GET
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         var islem = await _context.Islemler.FindAsync(id);
@@ -92,7 +97,7 @@ public class IslemController : Controller
     }
 
     // İşlem Sil - POST
-    [HttpPost, ActionName("Delete")]
+    [HttpPost, ActionName("Delete"),Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         var islem = await _context.Islemler.FindAsync(id);

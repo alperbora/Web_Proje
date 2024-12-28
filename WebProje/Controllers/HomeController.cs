@@ -3,6 +3,7 @@ using WebProje.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using WebProje.Data;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace WebProje.Controllers
@@ -24,6 +25,11 @@ namespace WebProje.Controllers
         }
 
         public IActionResult Contact()
+        {
+            return View();
+        }
+        [Authorize(Roles = "User,Admin")]
+        public IActionResult UserDashboard()
         {
             return View();
         }

@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Threading.Tasks;
+
 
 public class AIController : Controller
 {
@@ -11,7 +13,7 @@ public class AIController : Controller
         _replicateService = replicateService;
     }
 
-    [HttpPost]
+    [HttpPost,Authorize(Roles = "User,Admin")]
     public async Task<IActionResult> GenerateImage(string imageUrl, string prompt)
     {
         // Replicate API'yi çağırın ve yanıtı alın
@@ -26,6 +28,8 @@ public class AIController : Controller
 
         return View("Result");
     }
+
+    [Authorize(Roles = "User,Admin")]
     public IActionResult Index()
     {
         return View();

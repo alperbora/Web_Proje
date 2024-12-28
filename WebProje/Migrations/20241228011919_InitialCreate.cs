@@ -15,10 +15,11 @@ namespace WebProje.Migrations
                 name: "Admins",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
+                    IsAdmin = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,12 +30,12 @@ namespace WebProje.Migrations
                 name: "Calisanlar",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AdSoyad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UzmanlikAlani = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UygunSaatler = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Beceriler = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    AdSoyad = table.Column<string>(type: "TEXT", nullable: false),
+                    UzmanlikAlani = table.Column<string>(type: "TEXT", nullable: false),
+                    UygunSaatler = table.Column<string>(type: "TEXT", nullable: false),
+                    Beceriler = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,12 +46,12 @@ namespace WebProje.Migrations
                 name: "Contacts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SubmittedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Message = table.Column<string>(type: "TEXT", nullable: false),
+                    SubmittedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,30 +59,31 @@ namespace WebProje.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Salonlar",
+                name: "Islemler",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Ad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CalismaSaatleri = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Tip = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Ad = table.Column<string>(type: "TEXT", nullable: false),
+                    Ucret = table.Column<double>(type: "REAL", nullable: false),
+                    Sure = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Salonlar", x => x.Id);
+                    table.PrimaryKey("PK_Islemler", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Randevular",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CalisanId = table.Column<int>(type: "int", nullable: false),
-                    RandevuZamani = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Islem = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ucret = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CalisanId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Islem = table.Column<string>(type: "TEXT", nullable: false),
+                    RandevuSaati = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Ucret = table.Column<double>(type: "REAL", nullable: false),
+                    Durum = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,10 +112,10 @@ namespace WebProje.Migrations
                 name: "Contacts");
 
             migrationBuilder.DropTable(
-                name: "Randevular");
+                name: "Islemler");
 
             migrationBuilder.DropTable(
-                name: "Salonlar");
+                name: "Randevular");
 
             migrationBuilder.DropTable(
                 name: "Calisanlar");

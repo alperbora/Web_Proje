@@ -4,6 +4,8 @@ using WebProje.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace WebProje.Controllers
 {
@@ -17,6 +19,7 @@ namespace WebProje.Controllers
         }
 
         // Index - Çalışanları listele
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var calisanlar = await _context.Calisanlar.ToListAsync(); // Asenkron işlem
@@ -24,12 +27,13 @@ namespace WebProje.Controllers
         }
 
         // Create - Yeni çalışan ekleme
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost,Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Calisan calisan)
         {
@@ -43,6 +47,7 @@ namespace WebProje.Controllers
         }
 
         // Edit - Çalışan bilgilerini düzenleme
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -59,7 +64,7 @@ namespace WebProje.Controllers
             return View(calisan);
         }
 
-        [HttpPost]
+        [HttpPost,Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,AdSoyad,UzmanlikAlani,UygunSaatler,Beceriler")] Calisan calisan)
         {
@@ -89,6 +94,7 @@ namespace WebProje.Controllers
         }
 
         // Details - Çalışan detaylarını görüntüleme
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -107,6 +113,7 @@ namespace WebProje.Controllers
         }
 
         // Delete - Çalışan silme
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,7 +131,7 @@ namespace WebProje.Controllers
             return View(calisan);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete"), Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

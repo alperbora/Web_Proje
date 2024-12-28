@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebProje.Data;
 using WebProje.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebProje.Controllers
 {
@@ -18,7 +19,7 @@ namespace WebProje.Controllers
         }
 
         // İşlemleri listelemek için GET metodu
-        [HttpGet]
+        [HttpGet,Authorize(Roles = ",Admin")]
         public async Task<ActionResult<IEnumerable<Islem>>> GetIslemler()
         {
             var islemler = await _context.Islemler.ToListAsync();
@@ -26,7 +27,7 @@ namespace WebProje.Controllers
         }
 
         // Yeni işlem eklemek için POST metodu
-        [HttpPost]
+        [HttpPost,Authorize(Roles = ",Admin")]
         public async Task<ActionResult<Islem>> CreateIslem(Islem islem)
         {
             if (ModelState.IsValid)
