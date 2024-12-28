@@ -1,3 +1,5 @@
+*******GÜVENLİK SEBEBİYLE GİTHUB ÜZERİNDEKİ PROJEDE APİ KEY SİLİNMİŞTİR*******
+
 Proje Hakkında Kısa Bilgi
 
 Proje Adı: Kuaför/Güzellik Salonu Yönetim Sistemi
