@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WebProje.Models.Admin">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAAACAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebProje.Models.Calisan">
+    <Position X="9.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAIAAAAAAAAAAAAAAAAAAAAABAAAAAAAEAAAAAI=</HashCode>
+      <FileName>Models\Calisan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebProje.Models.Contact">
+    <Position X="9.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAQAAAAAAAAAAABAIAAAAAA=</HashCode>
+      <FileName>Models\Contact.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebProje.Models.ErrorViewModel">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebProje.Models.Islem">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\Islem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebProje.Models.Randevu">
+    <Position X="7.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAAAAAAAAAAAAAAAQAAAAAAAIAAAAAAAAAwg=</HashCode>
+      <FileName>Models\Randevu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebProje.Migrations.AppDbContextModelSnapshot">
+    <Position X="1.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\AppDbContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebProje.Data.AppDbContext">
+    <Position X="11.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAgAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Data\AppDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

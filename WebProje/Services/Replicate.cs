@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 public class ReplicateService
 {
     private readonly HttpClient _httpClient;
-    private readonly string _replicateApiKey = ""; // API anahtarınızı buraya koyun
+    private readonly string _replicateApiKey = " "; // API anahtarınızı buraya koyun
 
     public ReplicateService(HttpClient httpClient)
     {

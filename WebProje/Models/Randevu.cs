@@ -3,11 +3,11 @@
     public class Randevu
     {
         public int Id { get; set; }
-        public int CalisanId { get; set; } // Çalışan ID
-        public string Islem { get; set; } // İşlem adı
-        public DateTime RandevuSaati { get; set; } // Randevu saati
-        public double Ucret { get; set; } // Ücret
-        public string Durum { get; set; } = "Bekliyor"; // Durum: Bekliyor, Onaylandı vb.
-        public Calisan Calisan { get; set; } // Çalışanla ilişki
+        public int CalisanId { get; set; } 
+        public string Islem { get; set; } 
+        public DateTime RandevuSaati { get; set; } 
+        public double Ucret { get; set; } 
+        public string Durum { get; set; } = "Bekliyor"; 
+        public Calisan Calisan { get; set; } 
     }
 }
