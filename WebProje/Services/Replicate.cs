@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 public class ReplicateService
 {
     private readonly HttpClient _httpClient;
-    private readonly string _replicateApiKey = " "; // API anahtarınızı buraya koyun
+    private readonly string _replicateApiKey = ""; // API anahtarınızı buraya koyun
 
     public ReplicateService(HttpClient httpClient)
     {
@@ -24,13 +24,13 @@ public class ReplicateService
             input = new
             {
                 image = imageUrl, // Fotoğraf URL'si
-                steps = 50,
+                steps = 40,
                 prompt = prompt,
                 negative_prompt = "(deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime:1.4), text, close up, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck", // Negative prompt ekleniyor
-                strength = 1.5,
+                strength = 1,
                 max_width = 612,
                 max_height = 612,
-                guidance_scale = 15
+                guidance_scale = 10
             }
         };
 

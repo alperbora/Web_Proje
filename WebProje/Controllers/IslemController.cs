@@ -29,7 +29,7 @@ public class IslemController : Controller
     }
 
     // Yeni İşlem Ekle - POST
-    [HttpPost,Authorize(Roles = "Admin")]
+    [HttpPost, Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create(Islem islem)
     {
         if (ModelState.IsValid)
@@ -54,7 +54,7 @@ public class IslemController : Controller
     }
 
     // İşlem Düzenle - POST
-    [HttpPost,Authorize(Roles = "Admin")]
+    [HttpPost, Authorize(Roles = "Admin")]
     public async Task<IActionResult> Edit(int id, Islem islem)
     {
         if (id != islem.Id)
@@ -97,7 +97,7 @@ public class IslemController : Controller
     }
 
     // İşlem Sil - POST
-    [HttpPost, ActionName("Delete"),Authorize(Roles = "Admin")]
+    [HttpPost, ActionName("Delete"), Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         var islem = await _context.Islemler.FindAsync(id);
